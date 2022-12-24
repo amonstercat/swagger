@@ -1,6 +1,7 @@
 package com.lzc.study.controller;
 
 
+import com.lzc.study.annotation.Annotation4Swagger;
 import com.lzc.study.entity.User;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ public class Mycontroller {
         return  "req";
     }
     @PostMapping("/posttt")
+    @Annotation4Swagger
     public String post()
     {
         return  "post";
