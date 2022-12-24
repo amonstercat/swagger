@@ -1,10 +1,8 @@
 package com.lzc.study.config;
-
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.w3c.dom.Document;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
@@ -34,7 +32,8 @@ public class Swagger3Config {
         docket.apiInfo(newApiInfo);
         docket.select() //获取Docket中的选择器，返回ApiSelectorBuilder，构建选择器
                     .apis(RequestHandlerSelectors.basePackage("com.lzc.study.controller"))//设定扫描哪个路径下包及其子包的注解
-                    .build();
+                    .paths(PathSelectors.regex("/swagger/.*")) //使用正则表达式，约束可生成API文档的路径地址
+         .build();
         return  docket;
     }
 }

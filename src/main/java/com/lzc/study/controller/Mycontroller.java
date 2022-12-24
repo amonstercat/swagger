@@ -5,9 +5,11 @@ import com.lzc.study.annotation.Annotation4Swagger;
 import com.lzc.study.entity.User;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 @Api(tags = "controller类测试") //用在请求类上 表示对类的说明
 @RestController
+@RequestMapping("/swagger")
 public class Mycontroller {
     @ApiOperation("测试get方法")  //用在请求方法上，表示对方法的说明
     @GetMapping("/gettt")
@@ -16,6 +18,7 @@ public class Mycontroller {
             return  "get";
     }
     @RequestMapping ("/reqqq")
+    @ApiIgnore
     public String req()
     {
         return  "req";
@@ -41,7 +44,7 @@ public class Mycontroller {
     }
 
     @PostMapping("/adduser")
-    @ApiOperation("测试实体类添加")
+    @ApiOperation(value = "测试实体类添加",notes = "describe")
     public String addUser(User user)
     {
          return  user.getUname()+"——"+user.getUage();
